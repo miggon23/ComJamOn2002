@@ -14,6 +14,7 @@ export default class Boot extends Phaser.Scene {
   preload() {
     this.load.setPath('./assets/sprites');
 
+    this.load.image('pointer', 'pointer.png');
     this.load.spritesheet('player', 'kiwi_spritesheet.png', {frameWidth: 100, frameHeight: 120});
   }
 
