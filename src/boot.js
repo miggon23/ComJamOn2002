@@ -20,6 +20,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('playButton', 'playButton.png');
     this.load.image('controlsButton', 'controlsButton.png');
     this.load.image('controlsPanel', 'controlsPanel.png');
+    this.load.image('background', 'background.png');
     this.load.image('back', 'back.png');
   
     this.load.spritesheet('player', 'kiwi_spritesheet.png', {frameWidth: 100, frameHeight: 120});
@@ -31,7 +32,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.createAnims();
-    this.scene.start('menu');
+    this.scene.start('level');
   }
 
   createAnims(){
