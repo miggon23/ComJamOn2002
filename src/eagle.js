@@ -3,7 +3,7 @@ export default class Eagle extends Phaser.GameObjects.Sprite
     constructor(scene, x, y){
         super(scene, x, y, 'eagle')
 
-        this.setScale(0.1);
+        this.setScale(0.2);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true);
         this.setDepth(2);

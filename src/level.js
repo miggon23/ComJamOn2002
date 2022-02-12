@@ -19,10 +19,9 @@ export default class Level extends Phaser.Scene {
 
     
     // fondo
-    this.backgroundSpeed = 10;
-    this.background = this.add.tileSprite(0, 0, this.cameras.main.width*2, this.cameras.main.height*2 + 100, 'background').setScrollFactor(0, 1).setDepth(0);
+    this.backgroundSpeed = 1;
+    this.background = this.add.tileSprite(0, 0, this.cameras.main.width*2, this.cameras.main.height*2 + 100, 'scrollBackground').setScrollFactor(0, 1).setDepth(0);
     this.background.setTileScale(0.2, 0.15);                                          // no sé pq tiene 100 de offset ?
-
     //this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2, 'background').setScale(0.2, 0.15).setDepth(0);
 
   }
