@@ -7,15 +7,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.existing(this);
     this.setDepth(3);
 
+    this.setScale(0.1);
     //Para que no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
 
-    this.body.setSize(this.displayWidth * 0.3, this.displayHeight * 0.35, true);
+    //this.body.setSize(this.displayWidth * 0.3, this.displayHeight * 0.35, true);
 
     this.w = this.scene.input.keyboard.addKey('W');
     this.a = this.scene.input.keyboard.addKey('A');
     this.s = this.scene.input.keyboard.addKey('S');
     this.d = this.scene.input.keyboard.addKey('D');
+
+    this.anims.play('kiwi_right', true);
   }
   
   preUpdate(t,dt) {
