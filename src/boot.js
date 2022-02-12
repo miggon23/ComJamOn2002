@@ -17,15 +17,22 @@ export default class Boot extends Phaser.Scene {
     this.load.image('pointer', 'pointer.png');
     this.load.image('kiwi', 'kiwiSolo.png');
     this.load.image('eagle', 'eagle.png');
-    this.load.image('menuBackground', 'menuBackgroundNoButtons.png');
-    this.load.image('playButton', 'playButton.png');
-    this.load.image('controlsButton', 'controlsButton.png');
-    this.load.image('controlsPanel', 'controlsPanel.png');
+
     this.load.image('background', 'background.png');
     this.load.image('scrollBackground', 'scrollBackground.png');
+    this.load.image('menuBackground', 'menuBackgroundNoButtons.png');
+
+    this.load.image('playButton', 'playButton.png');
+    this.load.image('playAgainButton', 'playAgainButton.png');
+    this.load.image('quitButton', 'quitButton.png');
+    this.load.image('controlsButton', 'controlsButton.png');
+    this.load.image('controlsPanel', 'controlsPanel.png');
     this.load.image('back', 'back.png');
-  
-    this.load.spritesheet('player', 'kiwi_spritesheet.png', {frameWidth: 1699, frameHeight: 2184}); //1671
+
+    this.load.image('ring', 'ring.png');
+    this.load.image('storm', 'storm.png');
+
+    this.load.spritesheet('player', 'kiwi_spritesheet.png', { frameWidth: 1699, frameHeight: 2184 }); //1671
   }
 
   /**
@@ -34,10 +41,10 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.createAnims();
-    this.scene.start('menu');
+    this.scene.start('gameOver');
   }
 
-  createAnims(){
+  createAnims() {
     this.anims.create({
       key: 'kiwi_right',
       frames: this.anims.generateFrameNumbers('player', { start: 2, end: 4 }),
