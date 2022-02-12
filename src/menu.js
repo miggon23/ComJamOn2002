@@ -4,26 +4,26 @@ export default class Menu extends Phaser.Scene{
     }
 
     create(){
-        this.background = this.add.image(0, 0, 'menuImage')
+        this.background = this.add.image(0, 0, 'menuBackground')
         .setOrigin(0, 0)
-        .setScale(1.4, 1.2);        
+        .setScale(0.145, 0.15);        
 
-        this.playButton = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 3, 'play_button')
-        .setInteractive().setScale(0.3);
+        this.playButton = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2, 'playButton')
+        .setInteractive().setScale(0.15);
 
         this.playButton.on('pointerup', function(event) {
             this.scene.start('level');
         }, this);
 
-        this.controlsButton = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight* 0.66, 'controls_button')
-        .setInteractive().setScale(0.35);
+        this.controlsButton = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2 + 250, 'controlsButton')
+        .setInteractive().setScale(0.15);
 
         this.controlsButton.on('pointerup', () => {
-            this.controlsImage = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2, 'controls')
-            .setInteractive().setScale(0.6); // hace falta el setInteractive para que no lo 'atravieses'
-            //this.add.existing(this.controlsImage); -> no hace falta pero ta bien
+            this.controlsImage = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2, 'controlsPanel')
+            .setInteractive().setScale(0.18); // hace falta el setInteractive para que no lo 'atravieses'
 
-            this.returnImage = this.add.image(this.controlsImage.getBottomLeft().x + 100, this.controlsImage.getBottomLeft().y - 50, 'back').setInteractive();
+            this.returnImage = this.add.image(this.controlsImage.getBottomLeft().x + 100, this.controlsImage.getBottomLeft().y - 80, 'back')
+            .setInteractive().setScale(0.15);
             //this.add.existing(this.returnImage);
 
             this.returnImage.on('pointerup', function (event) { 
