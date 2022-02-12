@@ -14,7 +14,7 @@ export default class Level extends Phaser.Scene {
    * Creación de los elementos de la escena principal de juego
    */
   create() {
-    this.player = new Player(this, 50 , 50);
+    this.player = new Player(this, this.cameras.main.displayWidth * 0.5, 50);
     this.eagle = new Eagle(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.8);
 
     
@@ -24,6 +24,7 @@ export default class Level extends Phaser.Scene {
     this.background.setTileScale(0.2, 0.15);                                          // no sé pq tiene 100 de offset ?
     //this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2, 'background').setScale(0.2, 0.15).setDepth(0);
 
+    this.physics.add.collider(this.player, this.eagle);
   }
 
 
