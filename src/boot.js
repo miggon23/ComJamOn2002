@@ -41,7 +41,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.createAnims();
-    this.scene.start('gameOver');
+    this.scene.start('menu');
   }
 
   createAnims() {

@@ -11,12 +11,15 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
         //Para que no se salga de los límites del mundo
         this.collideWorldBounds = true;
 
+        this.displayHeight = 1;
+        this.displayWidth = 1;
         this.alpha = 0;
         let tween = this.scene.tweens.add({
-          targets: [this],
-          duration: 5000,
-          alpha: 1
-          
+            targets: [this],
+            duration: 5000,
+            alpha: 1,
+            displayWidth: 200,
+            displayHeight: 300
         });
 
         tween.on('complete', this.checkCollision, this);
@@ -25,7 +28,7 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
     /**
      * Comprueba si en un instante determinado hay colisión con el jugador
      */
-    checkCollision(){
+    checkCollision() {
         console.log("aaa");
         this.onCollision();
     }

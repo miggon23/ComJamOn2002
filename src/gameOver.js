@@ -12,7 +12,7 @@ export default class gameOver extends Phaser.Scene{
         {fontFamily: 'Georgia', fontSize: 40}).setScrollFactor(0).setDepth(1000);
 
         
-        this.label2 = this.add.text(this.cameras.main.displayWidth / 2 - 200, 140, "Your score was: " + 100000, 
+        this.label2 = this.add.text(this.cameras.main.displayWidth / 2 - 200, 140, "Your score was: " + Math.round(info.score / 10000), 
         {fontFamily: 'Georgia', fontSize: 40}).setScrollFactor(0).setDepth(1000);
 
         this.playButton = this.add.image(this.cameras.main.displayWidth / 2, 300, 'playAgainButton')
@@ -29,4 +29,5 @@ export default class gameOver extends Phaser.Scene{
             this.scene.start('menu');
         }, this);
     }
+    
 }

@@ -1,4 +1,6 @@
-export default class Obstacle extends Obstacle {
+import Obstacle from "./obstacle.js";
+
+export default class Ring extends Obstacle {
 
     constructor(scene, x, y) {
         super(scene, x, y, 'ring');

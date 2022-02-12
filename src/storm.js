@@ -1,3 +1,4 @@
+import Obstacle from "./obstacle.js";
 export default class Storm extends Obstacle {
 
     constructor(scene, x, y) {
