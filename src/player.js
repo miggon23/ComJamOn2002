@@ -6,12 +6,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     this.setDepth(3);
-
-    this.setScale(0.1);
+    this.setScale(0.05);
+    
+    this.body.setSize(this.displayWidth*250, this.displayHeight*500, false);
+    
     //Para que no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
-
-    //this.body.setSize(this.displayWidth * 0.3, this.displayHeight * 0.35, true);
 
     this.jumpSpeed = -350;
     this.movementSpeed = 200;
@@ -21,7 +21,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.s = this.scene.input.keyboard.addKey('S');
     this.d = this.scene.input.keyboard.addKey('D');
 
-    this.anims.play('kiwi_right', true);
+    this.anims.play('kiwi_jump', true);
   }
   
   preUpdate(t,dt) {
@@ -29,12 +29,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     if (this.w.isDown && this.body.onFloor()) {
       this.body.setVelocityY(this.jumpSpeed);
+      this.anims.play('kiwi_jump', true);
     }
     else if (this.a.isDown){
       this.body.setVelocityX(-this.movementSpeed);
+      this.flipX = true;
+      this.anims.play('kiwi_right', true);
+
     }
     else if (this.d.isDown){
       this.body.setVelocityX(this.movementSpeed);
+      this.flipX = false;
+      this.anims.play('kiwi_right', true);
     }
     else {
       this.body.setVelocityX(this.body.velocity.x* 0.92);

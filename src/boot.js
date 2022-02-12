@@ -24,7 +24,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('scrollBackground', 'scrollBackground.png');
     this.load.image('back', 'back.png');
   
-    this.load.spritesheet('player', 'kiwi_spritesheet.png', {frameWidth: 1671, frameHeight: 2278});
+    this.load.spritesheet('player', 'kiwi_spritesheet.png', {frameWidth: 1699, frameHeight: 2184}); //1671
   }
 
   /**
@@ -39,14 +39,21 @@ export default class Boot extends Phaser.Scene {
   createAnims(){
     this.anims.create({
       key: 'kiwi_right',
-      frames: this.anims.generateFrameNumbers('player', { start: 0, end: 2 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 2, end: 4 }),
       frameRate: Data.animFrameRate,
       repeat: 0
     })
 
     this.anims.create({
       key: 'kiwi_jump',
-      frames: this.anims.generateFrameNumbers('player', { start: 3, end: 4 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 1, end: 0 }),
+      frameRate: Data.jumpAnimFrameRate,
+      repeat: 0,
+    })
+
+    this.anims.create({
+      key: 'kiwi_left',
+      frames: this.anims.generateFrameNumbers('player', { start: 2, end: 4 }),
       frameRate: Data.animFrameRate,
       repeat: 0,
     })
