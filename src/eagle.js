@@ -5,12 +5,14 @@ export default class Eagle extends Phaser.GameObjects.Sprite
 
         this.setScale(0.2);
         this.scene.add.existing(this);
-        this.scene.physics.add.existing(this, true);
+        //this.scene.physics.add.existing(this, true);
+        this.scene.matter.add.gameObject(this);
+
         this.setDepth(2);
 
 
-        this.body.setSize(this.displayWidth * 0.7, this.displayHeight * 0.15, true);
-        this.body.setOffset(this.displayWidth * 0.15, this.displayHeight * 0.35);
+        this.setSize(this.displayWidth * 0.7, this.displayHeight * 0.15, true);
+        //this.setOffset(this.displayWidth * 0.15, this.displayHeight * 0.35);
         
     }
 

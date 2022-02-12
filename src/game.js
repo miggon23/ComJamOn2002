@@ -18,9 +18,8 @@ let config = {
     pixelArt: true,
     scene: [Boot, Menu, Level, End],
     physics: { 
-        default: 'arcade', 
-        arcade: { 
-            gravity: { y: 400 }, 
+        default: 'matter', 
+        matter: {  
             debug: true 
         } 
     }
