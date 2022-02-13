@@ -7,13 +7,12 @@ export default class Eagle extends Phaser.GameObjects.Sprite
 
         this.setDepth(2);
 
-        
         //this.setOffset(this.displayWidth * 0.15, this.displayHeight * 0.35);
     }   
     
     setPhysics() {
         
-        this.scaleNumber = 4400;
+        this.scaleNumber = 2200;
         this.setSize(this.scaleNumber, this.scaleNumber * 0.04);
 
         this.scene.add.existing(this);
@@ -26,7 +25,7 @@ export default class Eagle extends Phaser.GameObjects.Sprite
         let force = new Phaser.Math.Vector2(0,-0.1*2); // valor de la gravedad
         this.applyForceFrom(pos, force);
 
-        this.setScale(0.15);
+        this.setScale(0.3);
     }
 
     preUpdate(t, dt){

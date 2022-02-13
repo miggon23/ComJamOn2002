@@ -29,7 +29,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
 
   setPhysics(eagle) {
-    this.setScale(0.04);
+    this.setScale(0.08);
     this.scaleNumber = 100;
     this.setSize(this.scaleNumber * 0.5, this.scaleNumber * 0.9);
 
@@ -43,7 +43,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.collideWorldBounds = true;
 
     this.scene.matter.world.on('collisionstart', this.changeJump, this);
-    
+
     this.setFixedRotation();
   }
 

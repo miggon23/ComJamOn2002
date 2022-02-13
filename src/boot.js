@@ -38,8 +38,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('cinematic4', './Cinematicas/4.png');
     this.load.image('cinematic5', './Cinematicas/5.png');
 
-    this.load.spritesheet('player', 'kiwi_spritesheet.png', { frameWidth: 1699, frameHeight: 2184 });
-    this.load.spritesheet('player2', 'kiwi_spritesheet2.png', { frameWidth: 1819.5, frameHeight: 2145 });
+    this.load.spritesheet('player', 'kiwi_spritesheet.png', { frameWidth: 850.4, frameHeight: 1092 });
+    this.load.spritesheet('player2', 'kiwi_spritesheet2.png', { frameWidth: 910.5, frameHeight: 1073 });
   }
 
   /**
