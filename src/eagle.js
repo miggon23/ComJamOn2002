@@ -49,7 +49,7 @@ export default class Eagle extends Phaser.GameObjects.Sprite
         this.setVelocityX(this.body.velocity.x * 0.9);
   
         this.rotation *= 0.97;
-        console.log("Eagle x: " + Math.round(this.x) + " y: " + Math.round(this.y));
+        //console.log("Eagle x: " + Math.round(this.x) + " y: " + Math.round(this.y));
     }
 
     limitateRotation(){

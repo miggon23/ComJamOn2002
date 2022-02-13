@@ -7,6 +7,8 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
         this.scene.matter.add.gameObject(this);
         this.setDepth(1);
         this.setScale(0.05);
+        this.setIgnoreGravity(true);
+        this.setSensor(true);
 
         //Para que no se salga de los límites del mundo
         this.collideWorldBounds = true;
@@ -16,21 +18,38 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
         this.alpha = 0;
         let tween = this.scene.tweens.add({
             targets: [this],
-            duration: 5000,
+            duration: 7000,
             alpha: 1,
             displayWidth: 200,
             displayHeight: 300
         });
 
-        tween.on('complete', this.checkCollision, this);
+        tween.on('complete', this.startCheckingCollision, this);
+        //this.scene.matter.world.on('collisionstart', this.doCollision, this);
+
     }
 
-    /**
-     * Comprueba si en un instante determinado hay colisión con el jugador
-     */
-    checkCollision() {
-        console.log("aaa");
+    startCheckingCollision() {
+        //this.scene.matter.world.on('collisionstart', this.doCollision, this);
+        //this.setOnCollide(this.doCollision, this);
+        // this.setOnCollide(pair => {
+        //     console.log("aaaa");
+        //     this.onCollision();
+        // });
+        
+        this.scene.matter.world.on('collisionstart', this.doCollision, this);
+
+        this.scene.time.addEvent({ delay: 800, callback: this.doDestroy, callbackScope: this });
+    }
+
+    doCollision() {
         this.onCollision();
+    }
+
+    doDestroy() {
+        this.body.destroy();
+        this.setActive(false).setVisible(false);
+        this.destroy();
     }
 
 }

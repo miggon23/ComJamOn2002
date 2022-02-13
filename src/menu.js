@@ -12,7 +12,8 @@ export default class Menu extends Phaser.Scene{
         .setInteractive().setScale(0.15);
 
         this.playButton.on('pointerup', function(event) {
-            this.scene.start('level');
+            let info = {type: "start"};
+            this.scene.start('cinematic', info);
         }, this);
 
         this.controlsButton = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2 + 250, 'controlsButton')

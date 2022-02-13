@@ -32,7 +32,13 @@ export default class Boot extends Phaser.Scene {
     this.load.image('ring', 'ring.png');
     this.load.image('storm', 'storm.png');
 
-    this.load.spritesheet('player', 'kiwi_spritesheet.png', { frameWidth: 1699, frameHeight: 2184 }); //1671
+    this.load.image('cinematic1', './Cinematicas/1.png');
+    this.load.image('cinematic2', './Cinematicas/2.png');
+    this.load.image('cinematic3', './Cinematicas/3.png');
+    this.load.image('cinematic4', './Cinematicas/4.png');
+    this.load.image('cinematic5', './Cinematicas/5.png');
+
+    this.load.spritesheet('player', 'kiwi_spritesheet.png', { frameWidth: 1699, frameHeight: 2184 });
   }
 
   /**

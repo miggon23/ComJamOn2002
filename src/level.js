@@ -20,9 +20,9 @@ export default class Level extends Phaser.Scene {
 
     this.eagle = new Eagle(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.6);
     this.player = new Player(this, 500, 300, this.eagle);
-    
+
     //new Ring(this, this.cameras.main.width / 2 + 50, this.cameras.main.height / 2);
-    //new Storm(this, this.cameras.main.width / 2 + 100, this.cameras.main.height / 2);
+    new Storm(this, this.cameras.main.width / 2 + 100, this.cameras.main.height / 2);
 
     // fondo
     this.backgroundSpeed = 1;
@@ -64,8 +64,8 @@ export default class Level extends Phaser.Scene {
    * Cuando el player muere (se cae o toca una nube)
    */
   endGame() {
-    let info = { score: this.score };
-    this.scene.start('gameOver', info);
+    let info = { score: this.score, type: "end" };
+    this.scene.start('cinematic', info);
   }
 
 }
