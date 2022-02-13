@@ -9,7 +9,6 @@ export default class Eagle extends Phaser.GameObjects.Sprite
 
         
         //this.setOffset(this.displayWidth * 0.15, this.displayHeight * 0.35);
-        
     }   
     
     setPhysics() {
@@ -49,15 +48,23 @@ export default class Eagle extends Phaser.GameObjects.Sprite
 
         this.setVelocityX(this.body.velocity.x * 0.9);
   
-        //console.log(dif);
+        this.rotation *= 0.97;
+        console.log("Eagle x: " + Math.round(this.x) + " y: " + Math.round(this.y));
     }
 
     limitateRotation(){
-        let limit = 1;
+        let limit = 0.1;
         if(this.rotation > limit)
-            this.rotation = limit;
+        {
+            this.setVelocityX(0);
+
+        }
         else if (this.rotation < -limit)
-            this.rotation = -limit;
+        {
+            this.setVelocityX(0);
+          
+        }
 
     }
+
 }

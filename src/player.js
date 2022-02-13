@@ -1,9 +1,12 @@
+import Data from './data.js';
+
 export default class Player extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y, eagle) {
     super(scene, x, y, 'pointer');
 
     this.setPhysics(eagle);
+    this.eagle = eagle;
 
     // this.setDisplaySize(this.scaleNumber, this.scaleNumber);   
 
@@ -18,29 +21,42 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.d = this.scene.input.keyboard.addKey('D');
 
     this.anims.play('kiwi_jump', true);
+
+    this.timer = 0;
+    this.timeToGrab = 500;
+    this.grabForce = 0.01;
   }
 
   setPhysics(eagle) {
-    this.setScale(0.05);
+    this.setScale(0.04);
     this.scaleNumber = 100;
-    this.setSize(this.scaleNumber * 0.6, this.scaleNumber * 0.9);
+    this.setSize(this.scaleNumber * 0.5, this.scaleNumber * 0.9);
 
     this.scene.add.existing(this);
     this.scene.matter.add.gameObject(this);
 
     //this.setMass(0.1);
-    this.setMass(1);
+    this.setMass(Data.physics.kiwi.mass);
 
     this.setDepth(3);
     this.collideWorldBounds = true;
 
     this.scene.matter.world.on('collisionstart', this.changeJump, this);
     //this.scene.matter.world.on('collisionend', this.changeJump, this);
+
+    
   }
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
-
+    this.timer += dt;
+    if(this.s.isDown && !this.jumping){
+      let pos_ = new Phaser.Math.Vector2(this.x, this.y + (this.displayHeight/2) + 10);
+      let force_ = new Phaser.Math.Vector2(0, -this.grabForce);
+      this.eagle.applyForceFrom(pos_, force_);
+      console.log("Grabbing");
+      this.timer = 0;
+    }
     if (this.w.isDown && !this.jumping) {
       this.jumping = true;
       this.setVelocityY(this.jumpSpeed);
