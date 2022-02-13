@@ -22,6 +22,13 @@ export default class Level extends Phaser.Scene {
     this.eagle = new Eagle(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.9);
     this.player = new Player(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.8, this.eagle);
 
+    this.minRandTime = 4000;
+    this.maxRandTime = 6000;
+    
+    // spawn de obstáculos
+    //new Ring(this, this.cameras.main.width / 2 + 50, this.cameras.main.height / 2);
+    //new Storm(this, this.cameras.main.width / 2 + 100, this.cameras.main.height / 2);
+
     // fondo
     this.backgroundSpeed = 1;
     this.background = this.add.tileSprite(0, 0, this.cameras.main.width * 2, this.cameras.main.height * 2 + 100, 'scrollBackground').setScrollFactor(0, 1).setDepth(0);
@@ -35,15 +42,25 @@ export default class Level extends Phaser.Scene {
     this.deathzone = new Deathzone(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight);
 
     this.setGroupCollision();
+    //this.colliderEvents();
+    this.spawnObstacle();
 
-    const obstaclesCol = this.matter.world.nextCategory();
-    this.spawnObstacle(obstaclesCol);
   }
 
 
   update(t, dt) {
     this.background.tilePositionX += this.backgroundSpeed;
     this.updateScore(1000);
+    this.reduceSpawnTime();
+  }
+
+  reduceSpawnTime() {
+    if(this.minRandTime > 800)
+      this.minRandTime--;
+    if(this.maxRandTime > 1200)
+      this.maxRandTime--;
+
+    console.log(this.minRandTime);
   }
 
   /**
@@ -55,25 +72,22 @@ export default class Level extends Phaser.Scene {
     this.label.text = "Score: " + Math.round(this.score / 10000);
   }
 
-  spawnObstacle(obstaclesCol) {
-    let rand = Phaser.Math.Between(0, 9);
+  spawnObstacle(){
+    let rand = Phaser.Math.Between (0, 9);
     let x = Phaser.Math.Between(110, this.cameras.main.displayWidth - 110);
     let y = Phaser.Math.Between(100, this.cameras.main.displayHeight - 100);
-
-    let obstacle;
-    if (rand <= 4) {
-      obstacle = new Ring(this, x, y);
+    if(rand <= 4){
+      new Ring(this, x, y);
     }
-    else {
-      obstacle = new Storm(this, x, y);
-    }
+    else{
+      new Storm(this, x, y);
+    } 
 
-    let randTime = Phaser.Math.Between(6000, 8000);
+    let randTime = Phaser.Math.Between(this.minRandTime, this.maxRandTime);
     this.time.addEvent({
       callback: this.spawnObstacle,
       callbackScope: this,
       delay: randTime,
-      arguments: [obstaclesCol]
     })
   }
 
@@ -93,21 +107,23 @@ export default class Level extends Phaser.Scene {
     this.scene.start('cinematic', info);
   }
 
-  setGroupCollision() {
+  setGroupCollision(){
     const playerCol = this.matter.world.nextCategory();
     const deathZoneCol = this.matter.world.nextCategory();
+    const obstaclesCol = this.matter.world.nextCategory();
 
     this.player.setCollisionCategory(playerCol);
     this.deathzone.setCollisionCategory(deathZoneCol);
-
+    
     //La deathzone solo recive collisiones del jugador
-    this.deathzone.setOnCollideWith(this.player, pair => {
+    //this.deathzone.setCollidesWith( [playerCol]);
+    this.deathzone.setOnCollideWith(this.player, pair =>{
       this.playerLoses();
     });
   }
 
-  playerLoses() {
 
+  playerLoses() {
     const config = {
       volume: 0.05,
       loop: false,
@@ -122,4 +138,5 @@ export default class Level extends Phaser.Scene {
     });
     tween.on('complete', this.endGame, this);
   }
+
 }

@@ -42,7 +42,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.setDepth(3);
     this.collideWorldBounds = true;
 
-    this.scene.matter.world.on('collisionstart', this.changeJump, this);
+    this.setOnCollideWith(eagle, pair => {
+      this.changeJump();
+    });
 
     this.setFixedRotation();
   }

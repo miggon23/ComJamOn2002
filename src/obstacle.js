@@ -31,7 +31,7 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
         let player = this.scene.player;
 
         if (((player.getTopLeft().x > this.getTopLeft().x && player.getTopLeft().x < this.getTopRight().x)
-            || (player.getTopRight().x > this.getTopLeft().x))
+            || ((player.getTopRight().x > this.getTopLeft().x) && (player.getTopRight().x < this.getTopRight().x)))
             && (player.getTopLeft().y < this.getBottomLeft().y && player.getBottomLeft().y > this.getTopLeft().y)) {
             this.doCollision();
         }
