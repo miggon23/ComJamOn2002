@@ -28,7 +28,6 @@ export default class Deathzone extends Phaser.GameObjects.Sprite
 
     preUpdate(t, dt){
         super.preUpdate(t, dt);
-        console.log("x: " + this.x, " y: " + this.y);
     }
 
 }

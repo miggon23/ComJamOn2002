@@ -20,7 +20,6 @@ export default class Ring extends Obstacle {
         let sfx = this.scene.sound.add('ringSound', config);
         sfx.play();
         this.scene.touchRing(this.value);
-        console.log("aro tocado");
     }
 
 }   

@@ -57,7 +57,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let pos_ = new Phaser.Math.Vector2(this.x, this.y + (this.displayHeight / 2) + 10);
         let force_ = new Phaser.Math.Vector2(0, -this.grabForce);
         this.eagle.applyForceFrom(pos_, force_);
-        //console.log("Grabbing");
         this.timer = 0;
         this.anims.play('kiwi_bite', true);
       }

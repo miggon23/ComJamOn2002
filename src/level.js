@@ -57,10 +57,9 @@ export default class Level extends Phaser.Scene {
   reduceSpawnTime() {
     if(this.minRandTime > 800)
       this.minRandTime--;
-    if(this.maxRandTime > 1200)
+    if(this.maxRandTime > 1000)
       this.maxRandTime--;
 
-    console.log(this.minRandTime);
   }
 
   /**
@@ -76,7 +75,7 @@ export default class Level extends Phaser.Scene {
     let rand = Phaser.Math.Between (0, 9);
     let x = Phaser.Math.Between(110, this.cameras.main.displayWidth - 110);
     let y = Phaser.Math.Between(100, this.cameras.main.displayHeight - 100);
-    if(rand <= 4){
+    if(rand <= 3){
       new Ring(this, x, y);
     }
     else{
