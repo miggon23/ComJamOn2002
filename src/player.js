@@ -68,6 +68,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.jumping = true;
       this.setVelocityY(this.jumpSpeed);
       this.anims.play('kiwi_jump', true);
+
+      const config = {
+        volume: 0.1,
+        loop: false,
+      };
+      let sfx = this.scene.sound.add('pio', config);
+      sfx.play();
     }
     else if (this.a.isDown) {
       this.setVelocityX(-this.movementSpeed);

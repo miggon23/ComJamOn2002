@@ -56,12 +56,10 @@ export default class Eagle extends Phaser.GameObjects.Sprite
         if(this.rotation > limit)
         {
             this.setVelocityX(0);
-
         }
         else if (this.rotation < -limit)
         {
             this.setVelocityX(0);
-          
         }
 
     }

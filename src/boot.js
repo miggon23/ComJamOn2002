@@ -40,6 +40,11 @@ export default class Boot extends Phaser.Scene {
 
     this.load.spritesheet('player', 'kiwi_spritesheet.png', { frameWidth: 850.4, frameHeight: 1092 });
     this.load.spritesheet('player2', 'kiwi_spritesheet2.png', { frameWidth: 910.5, frameHeight: 1073 });
+
+    this.load.audio('pio', '../music/pio.wav');
+    this.load.audio('ringSound', '../music/ring.wav');
+    this.load.audio('stormSound', '../music/storm.wav');
+    this.load.audio('backgroundMusic', '../music/BoxCat Games - B-3.mp3');
   }
 
   /**
