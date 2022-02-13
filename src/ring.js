@@ -13,6 +13,7 @@ export default class Ring extends Obstacle {
      * Qué ocurre cuando choca con el player
      */
     onCollision(){
+        this.anims.play('ringSound', true);
         this.scene.touchRing(this.value);
     }
 

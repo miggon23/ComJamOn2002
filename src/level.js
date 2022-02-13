@@ -75,7 +75,7 @@ export default class Level extends Phaser.Scene {
     let rand = Phaser.Math.Between (0, 9);
     let x = Phaser.Math.Between(110, this.cameras.main.displayWidth - 110);
     let y = Phaser.Math.Between(100, this.cameras.main.displayHeight - 100);
-    if(rand === 0){
+    if(rand <= 4){
       new Ring(this, x, y);
     }
     else{

@@ -11,6 +11,7 @@ export default class Storm extends Obstacle {
      * Qué ocurre cuando choca con el player
      */
     onCollision(){
+        this.play('stormSound', true);
         this.scene.endGame();
     }
 
