@@ -39,7 +39,7 @@ export default class Level extends Phaser.Scene {
     this.deathzone = new Deathzone(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight);
 
     this.setGroupCollision();
-    this.colliderEvents();
+    //this.colliderEvents();
   }
 
 
@@ -84,21 +84,26 @@ export default class Level extends Phaser.Scene {
     //La deathzone solo recive collisiones del jugador
     //this.deathzone.setCollidesWith( [playerCol]);
     this.deathzone.setOnCollideWith(this.player, pair =>{
-      console.log("choco con el jugador");
-      let tween = this.tweens.add({
-        targets: [this.player],
-        duration: 2000,
-        alpha: 0,
-      });
-      tween.on('complete', this.endGame, this);
+      this.playerLoses();
     });
   }
 
-  colliderEvents(){
-    this.matter.world.on('collisionstart',
-    (evento, cuerpo1, cuerpo2) => {
-      
-    })
+
+  playerLoses() {
+    console.log("choco con el jugador");
+    let tween = this.tweens.add({
+      targets: [this.player],
+      duration: 2000,
+      alpha: 0,
+    });
+    tween.on('complete', this.endGame, this);
   }
+
+  // colliderEvents(){
+  //   this.matter.world.on('collisionstart',
+  //   (evento, cuerpo1, cuerpo2) => {
+      
+  //   })
+  // }
 
 }

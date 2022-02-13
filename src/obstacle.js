@@ -27,19 +27,23 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
         tween.on('complete', this.startCheckingCollision, this);
         //this.scene.matter.world.on('collisionstart', this.doCollision, this);
 
+        
     }
-
+    
     startCheckingCollision() {
         //this.scene.matter.world.on('collisionstart', this.doCollision, this);
         //this.setOnCollide(this.doCollision, this);
         // this.setOnCollide(pair => {
-        //     console.log("aaaa");
-        //     this.onCollision();
-        // });
-        
-        this.scene.matter.world.on('collisionstart', this.doCollision, this);
-
-        this.scene.time.addEvent({ delay: 800, callback: this.doDestroy, callbackScope: this });
+            //     console.log("aaaa");
+            //     this.onCollision();
+            // });
+            
+            // this.scene.matter.world.on('collisionstart', this.doCollision, this);
+            
+            this.setOnCollideWith(this.scene.player, pair =>{
+                this.scene.playerLoses();
+            });
+            this.scene.time.addEvent({ delay: 800, callback: this.doDestroy, callbackScope: this });
     }
 
     doCollision() {
