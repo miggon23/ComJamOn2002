@@ -1,5 +1,5 @@
 const Data = {
     animFrameRate: 4,
-    jumpAnimFrameRate: 0.7,
+    jumpAnimFrameRate: 1,
 }
 export default Data
