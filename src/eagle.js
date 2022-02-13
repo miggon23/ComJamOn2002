@@ -27,19 +27,37 @@ export default class Eagle extends Phaser.GameObjects.Sprite
         // let force = new Phaser.Math.Vector2(0,-0.1*2); // valor de la gravedad
         // this.applyForceFrom(pos, force);
 
-        
         this.setScale(0.2);
     }
 
     preUpdate(t, dt){
         super.preUpdate(t, dt);
         let dif = this.getBottomRight().y - this.getBottomLeft().y;
-        if(Math.abs(dif) > 2){
+        if(Math.abs(dif) < 30){
 
-            this.setVelocityX(dif / 20);
+            this.setVelocityX(dif / 15);
+            //this.setVelocityX(this.rotation * 10);
         }
+        else {
+            if(dif > 0)
+                this.setVelocityX(2);
+            else
+                this.setVelocityX(-2);
+        }
+
+        this.limitateRotation();
+
         this.setVelocityX(this.body.velocity.x * 0.9);
-        
+  
         console.log(dif);
+    }
+
+    limitateRotation(){
+        let limit = 1;
+        if(this.rotation > limit)
+            this.rotation = limit;
+        else if (this.rotation < -limit)
+            this.rotation = -limit;
+
     }
 }

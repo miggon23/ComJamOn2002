@@ -31,6 +31,9 @@ export default class Level extends Phaser.Scene {
 
     //this.physics.add.collider(this.player, this.eagle);
     this.label = this.add.text(20, 20, "Score: ", { fontFamily: 'Georgia', fontSize: 25 }).setScrollFactor(0).setDepth(1000);
+
+    //Creamos los límites con el mundo
+    this.matter.world.setBounds();
   }
 
 
