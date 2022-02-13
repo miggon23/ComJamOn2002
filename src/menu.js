@@ -16,15 +16,15 @@ export default class Menu extends Phaser.Scene{
             this.scene.start('cinematic', info);
         }, this);
 
-        this.controlsButton = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2 + 250, 'controlsButton')
+        this.controlsButton = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2 + 200, 'controlsButton')
         .setInteractive().setScale(0.3);
 
         this.controlsButton.on('pointerup', () => {
             this.controlsImage = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2, 'controlsPanel')
-            .setInteractive().setScale(0.36); // hace falta el setInteractive para que no lo 'atravieses'
+            .setInteractive().setScale(0.33); // hace falta el setInteractive para que no lo 'atravieses'
 
             this.returnImage = this.add.image(this.controlsImage.getBottomLeft().x + 100, this.controlsImage.getBottomLeft().y - 80, 'back')
-            .setInteractive().setScale(0.3);
+            .setInteractive().setScale(0.27);
             //this.add.existing(this.returnImage);
 
             this.returnImage.on('pointerup', function (event) { 

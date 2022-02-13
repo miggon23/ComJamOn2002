@@ -11,7 +11,7 @@ import Cinematic from './cinematic.js';
 let config = {
     type: Phaser.AUTO,
     width:  1200,
-    height: 800,
+    height: 700,
     scale: {
         mode: Phaser.Scale.FIT,  
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
