@@ -22,6 +22,7 @@ export default class Level extends Phaser.Scene {
     this.eagle = new Eagle(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.9);
     this.player = new Player(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.8, this.eagle);
     
+    // spawn de obstáculos
     //new Ring(this, this.cameras.main.width / 2 + 50, this.cameras.main.height / 2);
     new Storm(this, this.cameras.main.width / 2 + 100, this.cameras.main.height / 2);
 
@@ -29,9 +30,7 @@ export default class Level extends Phaser.Scene {
     this.backgroundSpeed = 1;
     this.background = this.add.tileSprite(0, 0, this.cameras.main.width * 2, this.cameras.main.height * 2 + 100, 'scrollBackground').setScrollFactor(0, 1).setDepth(0);
     this.background.setTileScale(0.2, 0.15);                                          // no sé pq tiene 100 de offset ?
-    //this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2, 'background').setScale(0.2, 0.15).setDepth(0);
 
-    //this.physics.add.collider(this.player, this.eagle);
     this.label = this.add.text(20, 20, "Score: ", { fontFamily: 'Georgia', fontSize: 25 }).setScrollFactor(0).setDepth(1000);
 
     //Creamos los límites con el mundo
@@ -77,6 +76,7 @@ export default class Level extends Phaser.Scene {
   setGroupCollision(){
     const playerCol = this.matter.world.nextCategory();
     const deathZoneCol = this.matter.world.nextCategory();
+    const obstaclesCol = this.matter.world.nextCategory();
 
     this.player.setCollisionCategory(playerCol);
     this.deathzone.setCollisionCategory(deathZoneCol);

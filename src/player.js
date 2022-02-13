@@ -43,23 +43,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.collideWorldBounds = true;
 
     this.scene.matter.world.on('collisionstart', this.changeJump, this);
-    //this.scene.matter.world.on('collisionend', this.changeJump, this);
-
+    
     this.setFixedRotation();
   }
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
     this.timer += dt;
-    if(this.s.isDown){
-      if(!this.jumping){
-        let pos_ = new Phaser.Math.Vector2(this.x, this.y + (this.displayHeight/2) + 10);
+    if (this.s.isDown) {
+      if (!this.jumping) {
+        let pos_ = new Phaser.Math.Vector2(this.x, this.y + (this.displayHeight / 2) + 10);
         let force_ = new Phaser.Math.Vector2(0, -this.grabForce);
         this.eagle.applyForceFrom(pos_, force_);
         //console.log("Grabbing");
         this.timer = 0;
+        this.anims.play('kiwi_bite', true);
       }
-      else{
+      else {
         let dir_ = new Phaser.Math.Vector2(0, this.grabForce);
         this.applyForce(dir_);
       }
@@ -82,8 +82,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     else {
       this.setVelocityX(this.body.velocity.x * 0.92);
     }
-
-    //this.setAngle(0);
   }
 
   /**

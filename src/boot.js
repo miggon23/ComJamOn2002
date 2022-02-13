@@ -39,6 +39,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('cinematic5', './Cinematicas/5.png');
 
     this.load.spritesheet('player', 'kiwi_spritesheet.png', { frameWidth: 1699, frameHeight: 2184 });
+    this.load.spritesheet('player2', 'kiwi_spritesheet2.png', { frameWidth: 1819.5, frameHeight: 2145 });
   }
 
   /**
@@ -70,6 +71,13 @@ export default class Boot extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('player', { start: 2, end: 4 }),
       frameRate: Data.animFrameRate,
       repeat: 0,
+    })
+
+    this.anims.create({
+      key: 'kiwi_bite',
+      frames: this.anims.generateFrameNumbers('player2', { start: 0, end: 1 }),
+      frameRate: Data.animFrameRate,
+      repeat: 3,
     })
   }
 }
