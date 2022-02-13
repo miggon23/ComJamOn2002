@@ -8,7 +8,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     // this.setDisplaySize(this.scaleNumber, this.scaleNumber);   
     
     this.jumpSpeed = -3;
-    this.movementSpeed = 2;
+    this.movementSpeed = 4;
 
     this.w = this.scene.input.keyboard.addKey('W');
     this.a = this.scene.input.keyboard.addKey('A');
@@ -26,7 +26,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.add.existing(this);
     this.scene.matter.add.gameObject(this);
 
-    this.setMass(0.1);
+    //this.setMass(0.1);
+    this.setMass(1);
 
     this.setDepth(3);
     this.collideWorldBounds = true;
@@ -54,6 +55,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.setVelocityX(this.body.velocity.x * 0.92);
     }
 
-
+    this.setAngle(0);
   }
 }

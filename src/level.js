@@ -19,7 +19,7 @@ export default class Level extends Phaser.Scene {
     this.score = 0;
 
     this.player = new Player(this, 500, 300);
-    this.eagle = new Eagle(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.8);
+    this.eagle = new Eagle(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.6);
     //new Ring(this, this.cameras.main.width / 2 + 50, this.cameras.main.height / 2);
     //new Storm(this, this.cameras.main.width / 2 + 100, this.cameras.main.height / 2);
 
