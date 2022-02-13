@@ -25,6 +25,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.timer = 0;
     this.timeToGrab = 500;
     this.grabForce = 0.01;
+
   }
 
   setPhysics(eagle) {
@@ -44,18 +45,24 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.matter.world.on('collisionstart', this.changeJump, this);
     //this.scene.matter.world.on('collisionend', this.changeJump, this);
 
-    
+    this.setFixedRotation();
   }
 
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
     this.timer += dt;
-    if(this.s.isDown && !this.jumping){
-      let pos_ = new Phaser.Math.Vector2(this.x, this.y + (this.displayHeight/2) + 10);
-      let force_ = new Phaser.Math.Vector2(0, -this.grabForce);
-      this.eagle.applyForceFrom(pos_, force_);
-      console.log("Grabbing");
-      this.timer = 0;
+    if(this.s.isDown){
+      if(!this.jumping){
+        let pos_ = new Phaser.Math.Vector2(this.x, this.y + (this.displayHeight/2) + 10);
+        let force_ = new Phaser.Math.Vector2(0, -this.grabForce);
+        this.eagle.applyForceFrom(pos_, force_);
+        //console.log("Grabbing");
+        this.timer = 0;
+      }
+      else{
+        let dir_ = new Phaser.Math.Vector2(0, this.grabForce);
+        this.applyForce(dir_);
+      }
     }
     if (this.w.isDown && !this.jumping) {
       this.jumping = true;
@@ -76,7 +83,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.setVelocityX(this.body.velocity.x * 0.92);
     }
 
-    this.setAngle(0);
+    //this.setAngle(0);
   }
 
   /**

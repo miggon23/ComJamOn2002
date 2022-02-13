@@ -3,6 +3,7 @@ import Eagle from './eagle.js';
 import Player from './player.js';
 import Ring from './ring.js';
 import Storm from './storm.js';
+import Deathzone from './deathzone.js';
 
 export default class Level extends Phaser.Scene {
   /**
@@ -18,8 +19,8 @@ export default class Level extends Phaser.Scene {
   create() {
     this.score = 0;
 
-    this.eagle = new Eagle(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.6);
-    this.player = new Player(this, 500, 300, this.eagle);
+    this.eagle = new Eagle(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.9);
+    this.player = new Player(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight * 0.8, this.eagle);
     
     //new Ring(this, this.cameras.main.width / 2 + 50, this.cameras.main.height / 2);
     //new Storm(this, this.cameras.main.width / 2 + 100, this.cameras.main.height / 2);
@@ -35,6 +36,11 @@ export default class Level extends Phaser.Scene {
 
     //Creamos los límites con el mundo
     this.matter.world.setBounds();
+
+    this.deathzone = new Deathzone(this, this.cameras.main.displayWidth * 0.5, this.cameras.main.displayHeight);
+
+    this.setGroupCollision();
+    this.colliderEvents();
   }
 
 
@@ -66,6 +72,27 @@ export default class Level extends Phaser.Scene {
   endGame() {
     let info = { score: this.score };
     this.scene.start('gameOver', info);
+  }
+
+  setGroupCollision(){
+    const playerCol = this.matter.world.nextCategory();
+    const deathZoneCol = this.matter.world.nextCategory();
+
+    this.player.setCollisionCategory(playerCol);
+    this.deathzone.setCollisionCategory(deathZoneCol);
+    
+    //La deathzone solo recive collisiones del jugador
+    //this.deathzone.setCollidesWith( [playerCol]);
+    this.deathzone.setOnCollideWith(this.player, pair =>{
+      console.log("choco con el jugador");
+    });
+  }
+
+  colliderEvents(){
+    this.matter.world.on('collisionstart',
+    (evento, cuerpo1, cuerpo2) => {
+      
+    })
   }
 
 }
