@@ -21,7 +21,7 @@ export default class Menu extends Phaser.Scene {
 
         this.controlsButton.on('pointerup', () => {
             this.controlsImage = this.add.image(this.cameras.main.displayWidth / 2, this.cameras.main.displayHeight / 2, 'controlsPanel')
-                .setInteractive().setScale(0.15);
+                .setInteractive().setScale(0.3);
 
             this.returnImage = this.add.image(this.controlsImage.getBottomLeft().x + 100, this.controlsImage.getBottomLeft().y - 80, 'back')
                 .setInteractive().setScale(0.27);
@@ -36,13 +36,17 @@ export default class Menu extends Phaser.Scene {
         // Para que la música suene desde que se cargue la primera escena
         if (this.sound.context.state === 'suspended') {
             this.sound.context.resume();
+        } 
+        
+        if(this.sound.context.state !== 'running'){
+
+            let config = {
+                volume: 0.1,
+                loop: true,
+            };
+            this.backgroundMusic = this.sound.add('backgroundMusic', config);
+            this.backgroundMusic.play();
         }
         
-        let config = {
-            volume: 0.1,
-            loop: true,
-        };
-        this.backgroundMusic = this.sound.add('backgroundMusic', config);
-        this.backgroundMusic.play();
     }
 }
