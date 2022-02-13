@@ -64,4 +64,13 @@ export default class Eagle extends Phaser.GameObjects.Sprite
 
     }
 
+    killEagle(){
+        let tween = this.scene.tweens.add({
+            targets: [this],
+            duration: 2000,
+            alpha: 0,
+        });
+        tween.on('complete', this.destroy, this);
+    }
+
 }

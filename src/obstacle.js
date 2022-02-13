@@ -9,6 +9,7 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
         this.setScale(0.05);
         this.setIgnoreGravity(true);
         this.setSensor(true);
+        this.canCollide = false;
 
         //Para que no se salga de los límites del mundo
         this.collideWorldBounds = true;

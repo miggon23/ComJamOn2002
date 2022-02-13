@@ -24,7 +24,7 @@ export default class Level extends Phaser.Scene {
     
     // spawn de obstáculos
     //new Ring(this, this.cameras.main.width / 2 + 50, this.cameras.main.height / 2);
-    new Storm(this, this.cameras.main.width / 2 + 100, this.cameras.main.height / 2);
+    //new Storm(this, this.cameras.main.width / 2 + 100, this.cameras.main.height / 2);
 
     // fondo
     this.backgroundSpeed = 1;
@@ -40,6 +40,20 @@ export default class Level extends Phaser.Scene {
 
     this.setGroupCollision();
     //this.colliderEvents();
+    this.spawnObstacle();
+
+    // this.matter.world.on('collisionactive', (evento, cuerpo1, cuerpo2) => {
+    //   if(cuerpo1.jumping !== undefined){
+    //     if(cuerpo2.canCollide !== undefined && cuerpo2.canCollide === true)
+    //       console.log("Colision con obstaculo")
+    //   }
+
+    //   else if(cuerpo2.jumping !== undefined){
+    //     if(cuerpo1.canCollide !== undefined && cuerpo1.canCollide === true)
+    //       console.log("Colision con obstaculo")
+
+    //   }
+    // })
   }
 
 
@@ -55,6 +69,25 @@ export default class Level extends Phaser.Scene {
   updateScore(n) {
     this.score += n;
     this.label.text = "Score: " + Math.round(this.score / 10000);
+  }
+
+  spawnObstacle(){
+    let rand = Phaser.Math.Between (0, 9);
+    let x = Phaser.Math.Between(110, this.cameras.main.displayWidth - 110);
+    let y = Phaser.Math.Between(100, this.cameras.main.displayHeight - 100);
+    if(rand === 0){
+      new Ring(this, x, y);
+    }
+    else{
+      new Storm(this, x, y);
+    } 
+
+    let randTime = Phaser.Math.Between(6000, 8000);
+    this.time.addEvent({
+      callback: this.spawnObstacle,
+      callbackScope: this,
+      delay: randTime,
+    })
   }
 
   /**
