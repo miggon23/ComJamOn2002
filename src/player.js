@@ -24,8 +24,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.setSize(this.scaleNumber * 0.6, this.scaleNumber * 0.9);
     
     this.scene.add.existing(this);
-    //this.scene.physics.add.existing(this);
     this.scene.matter.add.gameObject(this);
+
+    this.setMass(0.1);
+
     this.setDepth(3);
     this.collideWorldBounds = true;
 

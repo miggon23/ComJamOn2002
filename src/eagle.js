@@ -21,7 +21,12 @@ export default class Eagle extends Phaser.GameObjects.Sprite
         this.scene.matter.add.gameObject(this, {render: {sprite: {yOffset: 2.2}}});
         this.collideWorldBounds = true;
         this.setIgnoreGravity(true);
-        
+        this.setMass(1000);
+
+        let pos = new Phaser.Math.Vector2(600, 800);
+        let force = new Phaser.Math.Vector2(0,-0.1*2); // valor de la gravedad
+        this.applyForceFrom(pos, force);
+
         this.setScale(0.2);
     }
 }
