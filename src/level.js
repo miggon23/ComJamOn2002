@@ -85,6 +85,12 @@ export default class Level extends Phaser.Scene {
     //this.deathzone.setCollidesWith( [playerCol]);
     this.deathzone.setOnCollideWith(this.player, pair =>{
       console.log("choco con el jugador");
+      let tween = this.tweens.add({
+        targets: [this.player],
+        duration: 2000,
+        alpha: 0,
+      });
+      tween.on('complete', this.endGame, this);
     });
   }
 
