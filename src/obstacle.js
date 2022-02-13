@@ -25,21 +25,19 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
         });
 
         tween.on('complete', this.startCheckingCollision, this);
-        //this.scene.matter.world.on('collisionstart', this.doCollision, this);
-
-
     }
 
     startCheckingCollision() {
-        //this.scene.matter.world.on('collisionstart', this.doCollision, this);
-        //this.setOnCollide(this.doCollision, this);
-        // this.setOnCollide(pair => {
-        //     console.log("aaaa");
-        //     this.onCollision();
-        // });
+        let player = this.scene.player;
+        if (((player.getTopLeft().x > this.getTopLeft().x && player.getTopLeft().x < this.getTopRight().x)
+            || (player.getTopRight().x > this.getTopLeft().x))
+            && ((player.getTopLeft().y < this.getBottomLeft().y && player.getBottomLeft().y > this.getTopLeft().y))) {
+            this.scene.playerLoses();
+        }
 
-        // this.scene.matter.world.on('collisionstart', this.doCollision, this);
+        if (this.scene.eagle.getTopLeft().x > this.getTopLeft().x && this.scene.eagle.getTopLeft().x < this.getTopRight().x) {
 
+        }
         this.setOnCollideWith(this.scene.player, pair => {
             this.scene.playerLoses();
         });
@@ -52,7 +50,6 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
 
     doDestroy() {
         this.body.destroy();
-        this.setActive(false).setVisible(false);
         this.destroy();
     }
 
