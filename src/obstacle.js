@@ -11,7 +11,6 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
         this.setSensor(true);
         this.canCollide = false;
 
-        //Para que no se salga de los límites del mundo
         this.collideWorldBounds = true;
 
         this.displayHeight = 1;
@@ -30,18 +29,16 @@ export default class Obstacle extends Phaser.GameObjects.Sprite {
 
     startCheckingCollision() {
         let player = this.scene.player;
+
         if (((player.getTopLeft().x > this.getTopLeft().x && player.getTopLeft().x < this.getTopRight().x)
             || (player.getTopRight().x > this.getTopLeft().x))
-            && ((player.getTopLeft().y < this.getBottomLeft().y && player.getBottomLeft().y > this.getTopLeft().y))) {
-            this.scene.playerLoses();
-        }
-
-        if (this.scene.eagle.getTopLeft().x > this.getTopLeft().x && this.scene.eagle.getTopLeft().x < this.getTopRight().x) {
-
+            && (player.getTopLeft().y < this.getBottomLeft().y && player.getBottomLeft().y > this.getTopLeft().y)) {
+            this.doCollision();
         }
         this.setOnCollideWith(this.scene.player, pair => {
-            this.scene.playerLoses();
+            this.doCollision();
         });
+
         this.scene.time.addEvent({ delay: 800, callback: this.doDestroy, callbackScope: this });
     }
 
